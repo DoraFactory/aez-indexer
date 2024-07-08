@@ -102,7 +102,7 @@ export async function handleBatchVoteEvent(event: CosmosEvent): Promise<void> {
 		logger.info(`--------------- batch_vote Event ----------------`);
 		logger.info(`-----------------------------------------------------`);
 		logger.info(
-			`${eventRecord.blockHeight} Save batch_vote event - ${contractAddress} : ${sender} => ${parseProjects} ${parseAmounts}`
+			`${eventRecord.blockHeight} Save batch_vote event - ${contractAddress} : ${sender} => ${project} ${amount}`
 		);
 	}
 }

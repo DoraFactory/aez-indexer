@@ -21,6 +21,7 @@ jobs:
     - name: Run local build
       run: |
         npm install --global yarn
+        yarn global add @subql/cli@5.0.0
         yarn install
         subql codegen
         CI=false subql build

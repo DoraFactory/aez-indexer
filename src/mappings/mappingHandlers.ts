@@ -54,8 +54,9 @@ function parseString(input: string): string[] {
 }
 
 export async function handleBatchVoteEvent(event: CosmosEvent): Promise<void> {
-	logger.info('=================== Event =====================');
-	logger.info('===============================================');
+	logger.info(`-----------------------------------------------------`);
+	logger.info(`--------------- batch_vote Event ----------------`);
+	logger.info(`-----------------------------------------------------`);
 	logger.info(
 		`handleBatchVoteEvent ${JSON.stringify(event.event.attributes)}`
 	);
@@ -65,6 +66,7 @@ export async function handleBatchVoteEvent(event: CosmosEvent): Promise<void> {
 	let contractAddress = event.event.attributes.find(
 		attr => attr.key === '_contract_address'
 	)?.value!;
+	logger.info(`contractAddress: ${contractAddress}`);
 
 	let sender = event.event.attributes.find(attr => attr.key === 'sender')
 		?.value!;
@@ -98,9 +100,6 @@ export async function handleBatchVoteEvent(event: CosmosEvent): Promise<void> {
 		});
 
 		await eventRecord.save();
-		logger.info(`-----------------------------------------------------`);
-		logger.info(`--------------- batch_vote Event ----------------`);
-		logger.info(`-----------------------------------------------------`);
 		logger.info(
 			`${eventRecord.blockHeight} Save batch_vote event - ${contractAddress} : ${sender} => ${project} ${amount}`
 		);

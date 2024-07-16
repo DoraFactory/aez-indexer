@@ -36,13 +36,15 @@ const project: CosmosProject = {
 		 * These settings can be found in your docker-compose.yaml, they will slow indexing but prevent your project being rate limited
 		 */
 		endpoint: ['http://47.128.207.247:26657'],
+		// endpoint: ['https://vota-testnet-rpc.dorafactory.org:443'],
 	},
 	dataSources: [
 		{
 			kind: CosmosDatasourceKind.Runtime,
-			startBlock: 2500400, // 2496001
+			startBlock: 2500400, // 2496001 // mainnet start block
 			// startBlock: 4941900,
 			// startBlock: 4969400,
+			// startBlock: 2533000, // testnet start block
 			mapping: {
 				file: './dist/index.js',
 				handlers: [
@@ -50,24 +52,30 @@ const project: CosmosProject = {
 						handler: 'handleBatchVoteEvent',
 						kind: CosmosHandlerKind.Event,
 						filter: {
-							// type: 'wasm',
 							type: 'wasm-batch_vote',
 							messageFilter: {
 								type: '/cosmwasm.wasm.v1.MsgExecuteContract',
 								values: {
 									contract:
-										'dora1kwsy422rq89ljgcycfkyvwmc2jvw5pwrqdzwa6gp4xfz6kmshads5ep3e6',
+										'dora1kwsy422rq89ljgcycfkyvwmc2jvw5pwrqdzwa6gp4xfz6kmshads5ep3e6', // old contract
 								},
 							},
 						},
 					},
-					// {
-					// 	handler: 'handleMessage',
-					// 	kind: CosmosHandlerKind.Message,
-					// 	filter: {
-					// 		type: '/cosmwasm.wasm.v1.MsgExecuteContract',
-					// 	},
-					// },
+					{
+						handler: 'handleBatchVoteEvent',
+						kind: CosmosHandlerKind.Event,
+						filter: {
+							type: 'wasm-batch_vote',
+							messageFilter: {
+								type: '/cosmwasm.wasm.v1.MsgExecuteContract',
+								values: {
+									contract:
+										'dora1s5dw2slwynz90n6gplshury5whsqtdl8aexn9k66cmzfqpk7a6zqyfjrry', // new contract
+								},
+							},
+						},
+					},
 				],
 			},
 		},

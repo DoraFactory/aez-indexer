@@ -71,9 +71,8 @@ export async function handleBatchVoteEvent(event: CosmosEvent): Promise<void> {
 	let sender = event.event.attributes.find(attr => attr.key === 'sender')
 		?.value!;
 
-	let projects = event.event.attributes
-		.find(attr => attr.key === 'projects')
-		?.value.toString()!;
+	let projects = event.event.attributes.find(attr => attr.key === 'projects')
+		?.value!;
 
 	let parseProjects = parseString(projects);
 

@@ -63,24 +63,28 @@ export async function handleBatchVoteEvent(event: CosmosEvent): Promise<void> {
 	logger.info(`height ${JSON.stringify(event.block.block.header.height)}`);
 	let timestamp = event.tx.block.header.time.getTime().toString();
 
-	let contractAddress = event.event.attributes.find(
-		attr => attr.key === '_contract_address'
-	)?.value!;
+	let contractAddress = event.event.attributes
+		.find(attr => attr.key === '_contract_address')
+		?.value.toString()!;
 	logger.info(`contractAddress: ${contractAddress}`);
 
-	let sender = event.event.attributes.find(attr => attr.key === 'sender')
-		?.value!;
+	let sender = event.event.attributes
+		.find(attr => attr.key === 'sender')
+		?.value.toString()!;
 
-	let projects = event.event.attributes.find(attr => attr.key === 'projects')
-		?.value!;
+	let projects = event.event.attributes
+		.find(attr => attr.key === 'projects')
+		?.value.toString()!;
 
 	let parseProjects = parseString(projects);
 
-	let amounts = event.event.attributes.find(attr => attr.key === 'amounts')
-		?.value!;
+	let amounts = event.event.attributes
+		.find(attr => attr.key === 'amounts')
+		?.value.toString()!;
 
-	let denom = event.event.attributes.find(attr => attr.key === 'denom')
-		?.value!;
+	let denom = event.event.attributes
+		.find(attr => attr.key === 'denom')
+		?.value.toString()!;
 
 	let parseAmounts = parseString(amounts);
 	for (let i = 0; i < parseProjects.length; i++) {

@@ -35,7 +35,10 @@ const project: CosmosProject = {
 		 * If you use a rate limited endpoint, adjust the --batch-size and --workers parameters
 		 * These settings can be found in your docker-compose.yaml, they will slow indexing but prevent your project being rate limited
 		 */
-		endpoint: ['https://vota-rpc.dorafactory.org:443'],
+		endpoint: [
+			'https://vota-rpc.dorafactory.org:443',
+			'https://doravota-mainnet-rpc.itrocket.net:443',
+		],
 		// endpoint: ['http://47.128.207.247:26657'],
 		// endpoint: ['https://vota-testnet-rpc.dorafactory.org:443'],
 	},

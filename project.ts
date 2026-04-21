@@ -36,7 +36,7 @@ const project: CosmosProject = {
 		 * These settings can be found in your docker-compose.yaml, they will slow indexing but prevent your project being rate limited
 		 */
 		endpoint: [
-			'https://vota-rpc.dorafactory.org:443',
+			'https://vota-archive-rpc.dorafactory.org:443',
 			'https://doravota-mainnet-rpc.itrocket.net:443',
 		],
 		// endpoint: ['http://47.128.207.247:26657'],
